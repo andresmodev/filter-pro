@@ -1,7 +1,12 @@
 import { useCharacters } from "./hooks/useCharacter.js";
 
 function Playground() {
-  const { characters } = useCharacters();
+  const { characters, loading, error } = useCharacters();
+
+  if (loading) return <p>Cargando...</p>;
+  if (error) return <p>`Error al cargar: {error.message || "Error desconocido"}`</p>;
+  if (characters.length === 0)
+    return <p>No hay personajes para mostrar. Intenta recargar la página.</p>;
 
   return (
     <div>

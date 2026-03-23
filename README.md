@@ -45,33 +45,6 @@ This project aims to strengthen key frontend engineering skills:
 
 ---
 
-## 🧪 Current Version: **v0.1.0**
-
-### 🎯 Objective of this version
-
-Establish a solid foundation for the project by setting up the architecture, tooling, and initial data flow.
-
----
-
-## ✅ Achievements in v0.1.0
-
-- 🧠 **Planned architecture from the beginning**  
-  Folder structure designed with scalability and separation of concerns in mind.
-
-- 🧹 **Professional ESLint configuration**  
-  Set up using modern flat config with React and Hooks plugins.
-
-- 🌐 **Basic API integration**  
-  Implemented a clean fetch function to retrieve character data.
-
-- 🪝 **Custom hook for data handling**  
-  Encapsulated fetching logic using `useCharacters`.
-
-- 🧪 **Playground environment**  
-  Created a temporary component to test features without polluting `App.jsx`.
-
----
-
 ## 🏗 Current Project Structure
 
 src/
@@ -117,14 +90,49 @@ npm run dev
 
 This project follows an iterative workflow:
 
-Create a feature branch
-Develop the feature
-Commit changes with clear messages
-Push to remote repository
-Create and review a Pull Request
-Merge into main
-Tag the version
-Clean branches
+- Create a feature branch
+- Develop the feature
+- Commit changes with clear messages
+- Push to remote repository
+- Create and review a Pull Request
+- Merge into main
+- Tag the version
+- Clean branches
+
+---
+
+## 🧪 Current Version: **v0.2.0**
+
+### 🎯 Objective of this version
+
+Implement full UI state handling for a better user experience: loading (fetching), error (request failures), and empty state (no data).
+
+---
+
+## ✅ Achievements in v0.2.0
+
+- ⏳ **Loading state**  
+  `loading` state initialized to `true` and set to `false` once the request completes (success or failure).
+
+- ⚠️ **Error handling**  
+  Error catching with `try/catch`, stored in `error` state, and displayed with a user-friendly message in the UI.
+
+- 🏚️ **Empty state**  
+  Check for `characters.length === 0` to display a message when no data is available (after successful load).
+
+- 🔄 **Custom hook improvements**  
+  Use of `finally` to ensure `loading` is always turned off.  
+  Expanded return: `{ characters, loading, error }`.
+
+- 🎨 **Playground improvements**  
+  Conditional early returns to display loading, error, or empty states before the main render.
+
+## Key changes since v0.1.0
+
+- Added `loading` and `error` states in `useCharacters`
+- Early returns in Playground to handle all 3 UI states
+- Use of `finally` for robustness
+- Friendlier and safer UI messages (using `error.message`)
 
 ---
 
