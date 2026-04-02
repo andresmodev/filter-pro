@@ -1,10 +1,11 @@
 import { useCharacters } from "./hooks/useCharacter.js";
+import Pagination from "./components/ui/Pagination/Pagination.jsx";
 
 function Playground() {
-  const { characters, loading, error } = useCharacters();
+  const { characters, meta, page, setPage, loading, error } = useCharacters();
 
   if (loading) return <p>Cargando...</p>;
-  if (error) return <p>`Error al cargar: {error.message || "Error desconocido"}`</p>;
+  if (error) return <p>Error: {error}</p>;
   if (characters.length === 0)
     return <p>No hay personajes para mostrar. Intenta recargar la página.</p>;
 
@@ -19,6 +20,7 @@ function Playground() {
           <p>{character.affiliation}</p>
         </div>
       ))}
+      <Pagination currentPage={page} totalPages={meta.totalPages} onPageChange={setPage} />
     </div>
   );
 }

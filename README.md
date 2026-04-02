@@ -101,38 +101,56 @@ This project follows an iterative workflow:
 
 ---
 
-## 🧪 Current Version: **v0.2.0**
+## 🧪 Current Version: **v0.3.0**
 
 ### 🎯 Objective of this version
 
-Implement full UI state handling for a better user experience: loading (fetching), error (request failures), and empty state (no data).
+Implement pagination functionality to allow users to navigate through character pages using the API's metadata.
 
 ---
 
-## ✅ Achievements in v0.2.0
+## ✅ Achievements in v0.3.0
 
-- ⏳ **Loading state**  
-  `loading` state initialized to `true` and set to `false` once the request completes (success or failure).
+- 📄 **Pagination Support**  
+  Modified `useCharacters` hook to accept `page` and `limit` parameters, and properly handle the `meta` object returned by the Dragon Ball API.
 
-- ⚠️ **Error handling**  
-  Error catching with `try/catch`, stored in `error` state, and displayed with a user-friendly message in the UI.
+- 🧩 **Reusable Button Component**  
+  Created a generic `Button` component in `components/ui/` with support for variants and disabled state.
 
-- 🏚️ **Empty state**  
-  Check for `characters.length === 0` to display a message when no data is available (after successful load).
+- 🔢 **Pagination Component**  
+  Built a `Pagination` component that displays Previous / Next buttons and numbered page buttons, fully controlled by the hook.
 
-- 🔄 **Custom hook improvements**  
-  Use of `finally` to ensure `loading` is always turned off.  
-  Expanded return: `{ characters, loading, error }`.
+- 🔄 **Integration**  
+  Connected pagination with the existing `Playground` component, allowing users to navigate between pages while maintaining loading and error states.
 
-- 🎨 **Playground improvements**  
-  Conditional early returns to display loading, error, or empty states before the main render.
+## Key Changes Since v0.2.0
 
-## Key changes since v0.1.0
+- Updated `fetchCharactersPage` to accept `page` and `limit` parameters
+- Expanded `useCharacters` hook to manage pagination state (`page`, `setPage`, `limit`, `setLimit`) and `meta` data
+- Created `components/ui/Button` reusable component
+- Created `components/ui/Pagination` component with Previous, Next and page number buttons
+- Improved error handling in the hook (`setError(null)` before new requests)
+- Better separation between data logic (hook) and UI logic (Pagination component)
 
-- Added `loading` and `error` states in `useCharacters`
-- Early returns in Playground to handle all 3 UI states
-- Use of `finally` for robustness
-- Friendlier and safer UI messages (using `error.message`)
+## Technical Decisions
+
+- Kept pagination logic inside the `Pagination` component (UI responsibility)
+- Used `meta.totalPages` from the API for navigation
+- Chose controlled component pattern (`onPageChange` prop)
+- Decided not to implement dynamic ellipsis ("...") for now to keep the implementation simple and clear
+
+---
+
+## 📌 Roadmap (Next Versions)
+
+- **v0.4.0** → Filtering with query parameters (name, race, affiliation)
+- **v0.5.0** → UI improvements and further componentization (CharacterCard, SearchBar, etc.)
+- **v0.6.0** → Global state management with Context API
+- **v0.7.0** → Final polish, README, deploy and project documentation
+
+---
+
+**Status**: v0.3.0 completed ✅
 
 ---
 
